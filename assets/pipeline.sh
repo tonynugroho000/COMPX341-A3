@@ -1,3 +1,10 @@
+if [ -z "$1" ]
+  then
+    echo "No argument supplied (Commit message)"
+    echo "Use as 'bash pipeline.sh \"{commit message}\""
+    exit
+fi
+
 echo "(0) Install"
 npm install
 
@@ -12,10 +19,9 @@ fi
 echo "(2) Release (Commit to repo)"
 git add .
 
-git commit -m "COMPX341-22A-A3 Commiting from CI/CD Pipeline"
+git commit -m "\"$1\""
 
 git push
 
 echo "(3) Deploy"
 npm run start
-
